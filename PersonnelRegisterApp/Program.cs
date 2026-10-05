@@ -111,6 +111,7 @@ static void PrintPersonnelList(PersonnelRegister personnelRegister)
     Console.WriteLine("--------------");
     Console.WriteLine();
     personnelRegister.PrintPersonnelList();
+    Console.WriteLine($"Total Personnel: {personnelRegister.PersonnelCount}");
 }
 
 static Personnel ReadPersonnel()
