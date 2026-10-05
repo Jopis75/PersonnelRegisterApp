@@ -6,6 +6,8 @@ namespace PersonnelRegisterClassLibrary
     {
         private readonly Dictionary<Guid, Personnel> personnelDictionary = [];
 
+        public int PersonnelCount => personnelDictionary.Count;
+
         public bool AddPersonnel(Personnel personnel)
         {
             return personnelDictionary.TryAdd(personnel.Id, personnel);

@@ -2,6 +2,8 @@
 {
     public interface IPersonnelRegister
     {
+        int PersonnelCount { get; }
+
         bool AddPersonnel(Personnel personnel);
 
         bool RemovePersonnel(Guid id);
