@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PersonnelRegisterApp/PersonnelRegisterApp.csproj" />
+  <Project Path="PersonnelRegisterClassLibrary/PersonnelRegisterClassLibrary.csproj" />
+</Solution>
