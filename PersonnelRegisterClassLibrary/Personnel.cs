@@ -4,7 +4,7 @@ namespace PersonnelRegisterClassLibrary
 {
     public class Personnel(Guid id) : IPersonnel
     {
-        public Personnel(Guid id, string firstName, string middleName, string lastName, decimal salary) : this(Guid.NewGuid())
+        public Personnel(Guid id, string firstName, string middleName, string lastName, decimal salary) : this(id)
         {
             FirstName = firstName;
             MiddleName = middleName;
