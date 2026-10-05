@@ -28,7 +28,7 @@ namespace PersonnelRegisterClassLibrary
             return new Personnel(Guid.Empty); // Null Object Pattern. Return an empty Personnel object if not found.
         }
 
-        public void PrintPersonnel(Personnel personnel)
+        public static void PrintPersonnel(Personnel personnel)
         {
             Console.WriteLine($"ID: {personnel.Id}");
             if (string.IsNullOrEmpty(personnel.MiddleName))

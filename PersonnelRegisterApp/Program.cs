@@ -66,6 +66,7 @@ static void RemovePersonnel(PersonnelRegister personnelRegister)
     Console.WriteLine("----------------");
     Console.WriteLine();
     var id = ReadPersonnelId();
+    Console.WriteLine();
     if (personnelRegister.RemovePersonnel(id))
     {
         Console.WriteLine($"Personnel with ID {id} removed successfully.");
@@ -101,7 +102,7 @@ static void PrintPersonnel(PersonnelRegister personnelRegister, Personnel person
     Console.WriteLine("Personnel");
     Console.WriteLine("---------");
     Console.WriteLine();
-    personnelRegister.PrintPersonnel(personnel);
+    PersonnelRegister.PrintPersonnel(personnel);
 }
 static void PrintPersonnelList(PersonnelRegister personnelRegister)
 {
