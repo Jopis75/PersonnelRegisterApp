@@ -6,28 +6,21 @@ var quit = false;
 
 while (!quit)
 {
-    PrintMenu();
-
-    Console.WriteLine();
-    Console.WriteLine("Enter your choice: ");
-    var choice = Console.ReadLine();
+    var choice = ReadMenuChoice();
 
     switch (choice)
     {
         case "1":
-            var personnel = ReadPersonnel();
-            personnelRegister.AddPersonnel(personnel);
+            AddPersonnel(personnelRegister);
             break;
         case "2":
-            // Remove Personnel logic.
+            RemovePersonnel(personnelRegister);
             break;
         case "3":
             // Find Personnel logic.
             break;
         case "4":
-            Console.WriteLine();
-            personnelRegister.PrintPersonnelList();
-            Console.WriteLine();
+            PrintPersonnelList(personnelRegister);
             break;
         case "5":
             quit = true;
@@ -38,25 +31,65 @@ while (!quit)
     }
 }
 
-static void PrintMenu()
+static string ReadMenuChoice()
 {
-    Console.WriteLine("Personnel Register Menu:");
+    Console.WriteLine();
+    Console.WriteLine("Personnel Register Menu");
+    Console.WriteLine("-----------------------");
     Console.WriteLine();
     Console.WriteLine("1. Add Personnel");
     Console.WriteLine("2. Remove Personnel");
     Console.WriteLine("3. Find Personnel");
     Console.WriteLine("4. Print Personnel List");
     Console.WriteLine("5. Quit");
+    Console.WriteLine();
+    Console.Write("Enter your choice: ");
+    var choice = Console.ReadLine();
+
+    return choice ?? string.Empty;
+}
+
+static void AddPersonnel(PersonnelRegister personnelRegister)
+{
+    Console.WriteLine();
+    Console.WriteLine("Add Personnel");
+    Console.WriteLine("-------------");
+    Console.WriteLine();
+    var personnel = ReadPersonnel();
+    personnelRegister.AddPersonnel(personnel);
+}
+
+static void RemovePersonnel(PersonnelRegister personnelRegister)
+{
+    Console.WriteLine();
+    Console.WriteLine("Remove Personnel");
+    Console.WriteLine("----------------");
+    Console.WriteLine();
+    var id = ReadPersonnelId();
+    if (personnelRegister.RemovePersonnel(id))
+    {
+        Console.WriteLine($"Personnel with ID {id} removed successfully.");
+    }
+    else
+    {
+        Console.WriteLine($"Could not find Personnel with ID {id}.");
+    }
+}
+
+static void PrintPersonnelList(PersonnelRegister personnelRegister)
+{
+    Console.WriteLine();
+    Console.WriteLine("Personnel List");
+    Console.WriteLine("--------------");
+    Console.WriteLine();
+    personnelRegister.PrintPersonnelList();
 }
 
 static Personnel ReadPersonnel()
 {
     var firstName = ReadFirstName();
-
     var middleName = ReadMiddleName();
-    
     var lastName = ReadLastName();
-
     var salary = ReadSalary();
 
     var personnel = new Personnel(Guid.NewGuid(), firstName, middleName, lastName, salary);
@@ -64,6 +97,20 @@ static Personnel ReadPersonnel()
     return personnel;
 }
 
+static Guid ReadPersonnelId()
+{
+    var idInput = string.Empty;
+    var id = Guid.Empty;
+
+    do
+    {
+        Console.Write("Enter Personnel ID (GUID format): ");
+        idInput = Console.ReadLine();
+    }
+    while (string.IsNullOrWhiteSpace(idInput) || !Guid.TryParse(idInput, out id));
+
+    return id;
+}
 
 static string ReadFirstName()
 {
@@ -71,7 +118,7 @@ static string ReadFirstName()
 
     do
     {
-        Console.WriteLine("Enter First Name: ");
+        Console.Write("Enter First Name: ");
         firstName = Console.ReadLine();
     }
     while (string.IsNullOrWhiteSpace(firstName));
@@ -81,7 +128,7 @@ static string ReadFirstName()
 
 static string ReadMiddleName()
 {
-    Console.WriteLine("Enter Middle Name (optional): ");
+    Console.Write("Enter Middle Name (optional): ");
     var middleName = Console.ReadLine();
     return middleName ?? string.Empty;
 }
@@ -92,7 +139,7 @@ static string ReadLastName()
 
     do
     {
-        Console.WriteLine("Enter Last Name: ");
+        Console.Write("Enter Last Name: ");
         lastName = Console.ReadLine();
     }
     while (string.IsNullOrWhiteSpace(lastName));
@@ -107,7 +154,7 @@ static decimal ReadSalary()
 
     do
     {
-        Console.WriteLine("Enter Salary: ");
+        Console.Write("Enter Salary: ");
         salaryInput = Console.ReadLine();
     }
     while (string.IsNullOrWhiteSpace(salaryInput) || !decimal.TryParse(salaryInput, out salary));

@@ -40,6 +40,7 @@ namespace PersonnelRegisterClassLibrary
                     Console.WriteLine($"Name: {personnel.FirstName} {personnel.MiddleName} {personnel.LastName}");
                 }
                 Console.WriteLine($"Salary: {personnel.Salary:C}");
+                Console.WriteLine();
             }
         }
     }
