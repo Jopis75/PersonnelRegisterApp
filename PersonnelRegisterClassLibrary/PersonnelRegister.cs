@@ -26,20 +26,25 @@ namespace PersonnelRegisterClassLibrary
             return new Personnel(Guid.Empty); // Null Object Pattern. Return an empty Personnel object if not found.
         }
 
+        public void PrintPersonnel(Personnel personnel)
+        {
+            Console.WriteLine($"ID: {personnel.Id}");
+            if (string.IsNullOrEmpty(personnel.MiddleName))
+            {
+                Console.WriteLine($"Name: {personnel.FirstName} {personnel.LastName}");
+            }
+            else
+            {
+                Console.WriteLine($"Name: {personnel.FirstName} {personnel.MiddleName} {personnel.LastName}");
+            }
+            Console.WriteLine($"Salary: {personnel.Salary:C}");
+        }
+
         public void PrintPersonnelList()
         {
             foreach (var personnel in personnelDictionary.Values)
             {
-                Console.WriteLine($"ID: {personnel.Id}");
-                if (string.IsNullOrEmpty(personnel.MiddleName))
-                {
-                    Console.WriteLine($"Name: {personnel.FirstName} {personnel.LastName}");
-                }
-                else
-                {
-                    Console.WriteLine($"Name: {personnel.FirstName} {personnel.MiddleName} {personnel.LastName}");
-                }
-                Console.WriteLine($"Salary: {personnel.Salary:C}");
+                PrintPersonnel(personnel);
                 Console.WriteLine();
             }
         }

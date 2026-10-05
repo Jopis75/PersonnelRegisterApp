@@ -17,7 +17,7 @@ while (!quit)
             RemovePersonnel(personnelRegister);
             break;
         case "3":
-            // Find Personnel logic.
+            FindPersonnel(personnelRegister);
             break;
         case "4":
             PrintPersonnelList(personnelRegister);
@@ -76,6 +76,33 @@ static void RemovePersonnel(PersonnelRegister personnelRegister)
     }
 }
 
+static void FindPersonnel(PersonnelRegister personnelRegister)
+{
+    Console.WriteLine();
+    Console.WriteLine("Find Personnel");
+    Console.WriteLine("--------------");
+    Console.WriteLine();
+    var id = ReadPersonnelId();
+    var personnel = personnelRegister.FindPersonnel(id);
+    if (personnel.Id != Guid.Empty)
+    {
+        PrintPersonnel(personnelRegister, personnel);
+    }
+    else
+    {
+        Console.WriteLine();
+        Console.WriteLine($"Could not find Personnel with ID {id}.");
+    }
+}
+
+static void PrintPersonnel(PersonnelRegister personnelRegister, Personnel personnel)
+{
+    Console.WriteLine();
+    Console.WriteLine("Personnel");
+    Console.WriteLine("---------");
+    Console.WriteLine();
+    personnelRegister.PrintPersonnel(personnel);
+}
 static void PrintPersonnelList(PersonnelRegister personnelRegister)
 {
     Console.WriteLine();

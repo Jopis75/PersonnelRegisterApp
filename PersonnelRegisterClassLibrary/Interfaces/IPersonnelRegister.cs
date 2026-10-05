@@ -8,6 +8,8 @@
 
         Personnel FindPersonnel(Guid id);
 
+        void PrintPersonnel(Personnel personnel);
+
         void PrintPersonnelList();
     }
 }
