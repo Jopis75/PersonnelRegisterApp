@@ -6,28 +6,35 @@ var quit = false;
 
 while (!quit)
 {
-    var choice = ReadMenuChoice();
-
-    switch (choice)
+    try
     {
-        case "1":
-            AddPersonnel(personnelRegister);
-            break;
-        case "2":
-            RemovePersonnel(personnelRegister);
-            break;
-        case "3":
-            FindPersonnel(personnelRegister);
-            break;
-        case "4":
-            PrintPersonnelList(personnelRegister);
-            break;
-        case "5":
-            quit = true;
-            break;
-        default:
-            Console.WriteLine("Invalid choice.");
-            break;
+        var choice = ReadMenuChoice();
+
+        switch (choice)
+        {
+            case "1":
+                AddPersonnel(personnelRegister);
+                break;
+            case "2":
+                RemovePersonnel(personnelRegister);
+                break;
+            case "3":
+                FindPersonnel(personnelRegister);
+                break;
+            case "4":
+                PrintPersonnelList(personnelRegister);
+                break;
+            case "5":
+                quit = true;
+                break;
+            default:
+                Console.WriteLine("Invalid choice.");
+                break;
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An unexpected error has occurred. {ex.Message}");
     }
 }
 
